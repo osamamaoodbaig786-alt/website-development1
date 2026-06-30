@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Skill Showcase</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Required constraint [cite: 53] */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Bonus Challenge: Dark Mode Setup [cite: 70, 71] */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark background [cite: 73] */
+            color: #e0e0e0;            /* Light text [cite: 74] */
+            line-height: 1.6;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: #ffffff;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #00adb5;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Interactivity Modules: Bright Buttons & Accents [cite: 75] */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #00adb5; /* Bright button accent [cite: 75] */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        /* Button Hover Requirement [cite: 58] */
+        .btn:hover {
+            background-color: transparent;
+            border-color: #00adb5;
+            color: #00adb5;
+            transform: translateY(-2px);
+        }
+
+        /* 1. Header / Navbar Section (Flexbox Layout) [cite: 7, 54] */
+        .navbar {
+            display: flex; /* Flexbox implementation [cite: 54] */
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #252525;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00adb5;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00adb5;
+        }
+
+        /* 2. Hero Section Layout Configuration [cite: 15] */
+        .hero-section {
+            display: flex; /* Desktop split side-by-side [cite: 21] */
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 8%;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #b3b3b3;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Responsive Profile Picture Configs [cite: 56] */
+        .hero-image img {
+            max-width: 100%; /* Scale smoothly [cite: 56] */
+            height: auto;
+            border-radius: 12px;
+            border: 3px solid #2d2d2d;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5); /* Clean border shadow [cite: 76] */
+        }
+
+        /* 3. Skills Section (CSS Grid Implementation) [cite: 22, 55] */
+        .skills-section {
+            padding: 90px 8%;
+            background-color: #1a1a1a;
+        }
+
+        /* Verbatim required CSS snippet requested in specifications [cite: 31, 32] */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* [cite: 34] */
+            gap: 24px; /* [cite: 35] */
+        }
+
+        .skill-card {
+            background-color: #222222;
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #2d2d2d; /* Clean card borders [cite: 76] */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Card Hover Requirement [cite: 59] */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #00adb5;
+            box-shadow: 0 6px 15px rgba(0, 173, 181, 0.15);
+        }
+
+        .skill-card h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: #b3b3b3;
+        }
+
+        /* 4. Project Cards Section Layout [cite: 37] */
+        .projects-section {
+            padding: 90px 8%;
+            background-color: #121212;
+        }
+
+        /* CSS Grid configuration for clean column placements [cite: 44] */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #2d2d2d; /* Clean border constraint [cite: 76] */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Project Card Hover Animation [cite: 59] */
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #00adb5;
+            box-shadow: 0 8px 25px rgba(0, 173, 181, 0.15);
+        }
+
+        /* Added item inside the card boxes: Thumbnail/Image area */
+        .project-visual-blank {
+            width: 100%;
+            height: 140px;
+            background-color: #252525;
+            border: 1px dashed #3d3d3d;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-card h3 {
+            color: #00adb5;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* Added item inside the card boxes: Features/Highlights list */
+        .project-features {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            font-size: 0.85rem;
+            color: #a5a5a5;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-features li::before {
+            content: "•";
+            color: #00adb5;
+            font-weight: bold;
+            display: inline-block; 
+            width: 15px;
+        }
+
+        .project-card .tech-stack {
+            font-size: 0.85rem;
+            color: #888888;
+            margin-bottom: 20px;
+            background-color: #222222;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border-left: 3px solid #00adb5;
+        }
+
+        .card-btn {
+            text-align: center;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        /* 5. Contact Section Layout [cite: 45] */
+        .contact-section {
+            padding: 90px 8%;
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #222222;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #2d2d2d;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            color: #b3b3b3;
+        }
+
+        .contact-info a {
+            color: #00adb5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .contact-btn {
+            min-width: 220px;
+        }
+
+        /* ==========================================================================
+           Required Media Queries for Complete Responsive Design [cite: 57, 62]
+           ========================================================================== */
+        
+        /* Media Query 1: Tablet [cite: 64] */
+        @media (max-width: 768px) { /* [cite: 64] */
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            /* Responsive Hero transformation to block vertical layout stack [cite: 21] */
+            .hero-section {
+                flex-direction: column; /* Vertical alignment [cite: 21] */
+                text-align: center;
+                padding: 60px 5%;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .skills-section, .projects-section, .contact-section {
+                padding: 60px 5%;
+            }
+        }
+
+        /* Media Query 2: Small Mobile screens [cite: 67] */
+        @media (max-width: 480px) { /* [cite: 67] */
+            /* Transform navbar header positioning [cite: 14] */
+            .navbar {
+                flex-direction: column; /* Stacked layout on mobile [cite: 14] */
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 0 12px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr; /* Single column distribution [cite: 61] */
+            }
+            
+            .contact-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Muhammad Osama</div> <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li> <li><a href="#skills">Skills</a></li> <li><a href="#projects">Projects</a></li> <li><a href="#contact">Contact</a></li> </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Muhammad Osama</h1> <p>I am a passionate Web Developer and Data Analyst. I focus on writing clean code, building complex logic, and creating highly responsive user experiences.</p> <a href="#projects" class="btn hero-btn">View My Work</a> </div>
+            <div class="hero-image">
+                <img src="profile.jpg" alt="Muhammad Osama Profile Pic">
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2>My Skills</h2>
+            <div class="skills-grid"> <div class="skill-card">
+                    <h3>HTML</h3> <p>Structuring the web with proper semantic tags and SEO-friendly structures.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>CSS</h3> <p>Styling fluid web layouts with absolute modern design aesthetics.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Flexbox</h3> <p>Aligning items smoothly and designing responsive navigation modules.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>CSS Grid</h3> <p>Crafting powerful two-dimensional grid systems for complex user interfaces.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Responsive Design</h3> <p>Optimizing web pages to work flawlessly on laptop, mobile, and tablet screens.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>JavaScript Basics</h3> <p>Adding interactivity, tracking dynamic states, and handling user logic.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2>My Projects</h2>
+            <div class="projects-container">
+                
+                <div class="project-card">
+                    <div>
+                        <!-- <div class="project-visual-blank">[ Dashboard Preview ]</div> -->
+                        <h3>Bin Khalid Dashboard</h3> <p>A full-scale analytical dashboard designed to track business data visualizations, manage operational workflows, and display responsive metrics seamlessly.</p> <ul class="project-features">
+                            <li>Dynamic charts implementation</li>
+                            <li>Interactive filtering mechanisms</li>
+                            <li>Clean analytical summaries</li>
+                        </ul>
+                        
+                        <div class="tech-stack"><strong>Technologies used:</strong> HTML, CSS Grid, Flexbox, Chart.js</div> </div>
+                    <a href="" class="btn card-btn">View Project</a> </div>
+
+                <div class="project-card">
+                    <div>
+                        <!-- <div class="project-visual-blank">[ Quiz Interface ]</div> -->
+                        <h3>Interactive Quiz App</h3> <p>A highly interactive quiz application that dynamically processes a pool of 30 engaging questions, scoring metrics, and handling advanced execution logic.</p> <ul class="project-features">
+                            <li>30 complete custom questions</li>
+                            <li>Real-time score calculation</li>
+                            <li>Progress tracking bar states</li>
+                        </ul>
+                        
+                        <div class="tech-stack"><strong>Technologies used:</strong> HTML, CSS, JavaScript Basics</div> </div>
+                    <a href="#" class="btn card-btn">View Project</a> </div>
+
+                <div class="project-card">
+                    <div>
+                        <!-- <div class="project-visual-blank">[ Portfolio Showcase ]</div> -->
+                        <h3>Premium Portfolio Page</h3> <p>A fully responsive personal showcase webpage crafted to highlight web development credentials, layout frameworks, and internship readiness.</p> <ul class="project-features">
+                            <li>Semantic HTML5 modules</li>
+                            <li>Adaptive mobile-first layout</li>
+                            <li>Custom CSS hover micro-animations</li>
+                        </ul>
+                        
+                        <div class="tech-stack"><strong>Technologies used:</strong> HTML, CSS Grid, Media Queries</div> </div>
+                    <a href="#" class="btn card-btn">View Project</a> </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:osama.baig@example.com">osamamaoodbaig786@gmail.com</a></p> <p><strong>Phone Number:</strong> +92 3054122965</p> <p><strong>LinkedIn:</strong> <a href="#" target="_blank">https://www.linkedin.com/in/muhammad-osama-maood-baig-634b26182/</a></p> </div>
+                <a href="mailto:osama.baig@example.com" class="btn contact-btn">Contact Button</a> </div>
+        </section>
+    </main>
+
+</body>
+</html>

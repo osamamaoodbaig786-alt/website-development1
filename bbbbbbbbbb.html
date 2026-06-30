@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Osama Maood Baig - Business Card</title>
+    <style>
+        /* Base page styling to center the card */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef; /* Light gray page background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Business card styling */
+        .card {
+            background-color: #ffffff; /* White card background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            overflow: hidden; /* Ensures content stays inside rounded corners */
+            text-align: center;
+            padding: 30px;
+            margin: 20px;
+        }
+
+        /* Profile image styling */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Make image circular */
+            object-fit: cover; /* Maintain aspect ratio */
+            border: 5px solid #004085; /* Dark blue border to match suit theme */
+            margin-bottom: 20px;
+        }
+
+        /* Name and Title */
+        .name {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 16px;
+            color: #004085; /* Blue accent color */
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Bio text */
+        .bio {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        /* Skills section */
+        .skills {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: #f1f3f5;
+            color: #495057;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* Contact button styling with hover effect */
+        .contact-btn {
+            display: inline-block;
+            background-color: #004085; /* Primary dark blue */
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #0056b3; /* Lighter blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="your-image.png" alt="Muhammad Osama Maood Baig" class="profile-img">
+        
+        <h1 class="name">Muhammad Osama Maood Baig</h1>
+        <p class="title">Web Development Student</p>
+        
+        <p class="bio">
+            Passionate about building functional and visually appealing web applications. I am currently honing my skills in modern front-end technologies and exploring full-stack possibilities.
+        </p>
+
+        <ul class="skills">
+            <li class="skill-tag">HTML/CSS</li>
+            <li class="skill-tag">JavaScript</li>
+            <li class="skill-tag">Responsive Design</li>
+        </ul>
+        
+        <a href="mailto:your.email@example.com" class="contact-btn">Contact Me</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+/* 1. Poore page ko center karne ke liye body ki styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Page ka background color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Card ko horizontally center karega */
+    align-items: center;     /* Card ko vertically center karega */
+    min-height: 100vh;       /* Poori screen ki height lega */
+}
+
+/* 2. Main Profile Card ki styling */
+.profile-card {
+    background-color: #ffffff; /* Card ka background color white */
+    width: 320px;
+    padding: 30px;             /* Card ke andar ki spacing */
+    margin: 20px;              /* Card ke baahar ki spacing */
+    border-radius: 15px;       /* Corners ko round karne ke liye */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Halka sa shadow effect */
+    text-align: center;        /* Card ke andar ka sab text center karne ke liye */
+}
+
+/* 3. Profile Image ki styling */
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;        /* Image ko gol (circle) banane ke liye */
+    object-fit: cover;
+    border: 3px solid #007bff; /* Blue color ka border */
+    margin-bottom: 15px;
+}
+
+/* 4. Text (Name aur Title) ki styling */
+.profile-name {
+    font-size: 24px;
+    color: #333333;
+    margin: 10px 0 5px 0;
+}
+
+.profile-title {
+    font-size: 16px;
+    color: #007bff;            /* Highlighted blue color */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.profile-bio {
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* 5. Skills Badges ki styling */
+.skills-container {
+    margin-bottom: 25px;
+}
+
+.skill-tag {
+    background-color: #e1e7ff;
+    color: #4051b5;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 20px;       /* Fully rounded corners for skills */
+    display: inline-block;
+}
+
+/* 6. Contact Button ki styling aur Hover Effect */
+.contact-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth change ke liye */
+}
+
+/* Hover Effect: Jab mouse button par jaye */
+.contact-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

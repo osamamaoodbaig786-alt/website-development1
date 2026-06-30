@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Card Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            padding: 40px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            color: #0f172a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header-section p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* 1. GRID IMPLEMENTATION (For the main 6-card layout) */
+        .courses-grid {
+            display: grid;
+            /* Ek row mein 3 cards aayenge, aur screen choti hone par automatic adjust ho jayenge */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 2. FLEXBOX IMPLEMENTATION (For aligning content inside each card) */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            
+            /* Flexbox se content vertically center aur properly spaced rahega */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: space-between;
+            min-height: 380px; /* Sabhi cards ki height barabar rakhne ke liye */
+        }
+
+        /* Common Icon Styling */
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Tech Specific Colors */
+        .html-icon { background: #ff4d4d; }
+        .css-icon { background: #0066ff; }
+        .js-icon { background: #ffcc00; color: #000; }
+        .react-icon { background: #00d8ff; color: #000; }
+        .node-icon { background: #339933; }
+        .python-icon { background: #3776ab; }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .level {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .reviews {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .reviews span {
+            color: #ffaa00;
+        }
+
+        /* Common Button Styling */
+        .btn {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Button Colors matching your design */
+        .btn-html { background-color: #ff4d4d; }
+        .btn-css { background-color: #0066ff; }
+        .btn-js { background-color: #00b374; } /* Matching your screenshot's green */
+        .btn-react { background-color: #00d8ff; color: #000; }
+        .btn-node { background-color: #339933; }
+        .btn-python { background-color: #3776ab; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>Explore Our Courses</h1>
+        <p>Learn the essentials of web development</p>
+    </div>
+
+    <div class="courses-grid">
+
+        <div class="card">
+            <div class="icon html-icon">HTML</div>
+            <div>
+                <h3>HTML</h3>
+                <div class="level">Beginner Friendly</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.8 (1.2k reviews)</div>
+            <button class="btn btn-html">Start Learning</button>
+        </div>
+
+        <div class="card">
+            <div class="icon css-icon">CSS</div>
+            <div>
+                <h3>CSS</h3>
+                <div class="level">Intermediate Level</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.7 (1.5k reviews)</div>
+            <button class="btn btn-css">Start Learning</button>
+        </div>
+
+        <div class="card">
+            <div class="icon js-icon">JS</div>
+            <div>
+                <h3>JavaScript</h3>
+                <div class="level">Advanced Techniques</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.9 (1.8k reviews)</div>
+            <button class="btn btn-js">Start Learning</button>
+        </div>
+
+        <div class="card">
+            <div class="icon react-icon">React</div>
+            <div>
+                <h3>React</h3>
+                <div class="level">Frontend Framework</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.9 (2.1k reviews)</div>
+            <button class="btn btn-react">Start Learning</button>
+        </div>
+
+        <div class="card">
+            <div class="icon node-icon">Node</div>
+            <div>
+                <h3>Node.js</h3>
+                <div class="level">Backend Development</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.6 (950 reviews)</div>
+            <button class="btn btn-node">Start Learning</button>
+        </div>
+
+        <div class="card">
+            <div class="icon python-icon">Python</div>
+            <div>
+                <h3>Python</h3>
+                <div class="level">Data & Backend</div>
+            </div>
+            <div class="reviews"><span>★</span> 4.8 (3.4k reviews)</div>
+            <button class="btn btn-python">Start Learning</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

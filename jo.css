@@ -1,0 +1,8 @@
+/* Jab input focus ho YA empty na ho, tab uske baad wale label ko change karo */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 11px;
+    color: var(--accent-primary);
+}

@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 1. Body ko clean rakha taake card apni jagah se na hile */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 2. Dancing Layer: Sirf yeh layer dance karegi */
+body::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientAnimation 8s ease-in-out infinite;
+    z-index: -1; /* Isay card ke peeche rakhne ke liye */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        background-position: 50% 100%;
+        transform: scale(1.05) rotate(2deg); /* Background halka sa ghoomega */
+    }
+    50% {
+        background-position: 100% 50%;
+        transform: scale(0.95) rotate(-2deg);
+    }
+    75% {
+        background-position: 50% 0%;
+        transform: scale(1.05) rotate(1deg);
+    }
+    100% {
+        background-position: 0% 50%;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* 3. Glassmorphism Quiz Container (Aapka White Card) */
+.quiz-container {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 100%;
+    max-width: 550px;
+    padding: 35px;
+    min-height: 350px;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative; /* Safe positioning ke liye */
+    z-index: 1;
+}

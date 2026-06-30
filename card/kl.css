@@ -1,0 +1,36 @@
+/* 1. Animated Gradient Dancing Background */
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    /* 6 seconds cycle taake fast aur energetic dance moves lagain */
+    animation: gradientAnimation 6s ease-in-out infinite; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        background-position: 50% 100%;
+        transform: scale(1.03) rotate(1deg); /* Thoda zoom aur halka sa tilt right */
+    }
+    50% {
+        background-position: 100% 50%;
+        transform: scale(0.98) rotate(-1deg); /* Halka sa zoom out aur tilt left */
+    }
+    75% {
+        background-position: 50% 0%;
+        transform: scale(1.04) rotate(0.5deg); /* Bounce back effect */
+    }
+    100% {
+        background-position: 0% 50%;
+        transform: scale(1) rotate(0deg);
+    }
+}

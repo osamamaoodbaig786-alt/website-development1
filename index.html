@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellent Course Admission Portal</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #1a1c29 0%, #0d0e15 90%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Ambient Animated Background Orbs --- */
+        .bg-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -10%;
+            right: -10%;
+            z-index: 1;
+            animation: floatGlow 10s ease-in-out infinite alternate;
+        }
+        
+        .bg-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -10%;
+            left: -10%;
+            z-index: 1;
+            animation: floatGlow 8s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
+        }
+
+        /* --- Split-Screen Main Container --- */
+        .portal-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(22, 24, 37, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 50px rgba(99, 102, 241, 0.1);
+            animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* --- Left Side: Welcome & Promo Banner --- */
+        .sidebar-banner {
+            flex: 1;
+            background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Waves Animation inside Banner */
+        .sidebar-banner::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: spinWaves 20s linear infinite;
+        }
+
+        @keyframes spinWaves {
+            100% { transform: rotate(360deg); }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        .banner-content .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: pulseBadge 2s infinite;
+        }
+
+        @keyframes pulseBadge {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        .banner-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .banner-content p {
+            color: #e0e7ff;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .banner-footer {
+            position: relative;
+            z-index: 2;
+            color: #a5b4fc;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+        }
+
+        /* --- Right Side: Excellent Form Area --- */
+        .form-area {
+            flex: 1.4;
+            padding: 50px 45px;
+            background: #11131e;
+        }
+
+        .form-header {
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Form Grid Layout */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* --- Premium Input Styling --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #818cf8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: #181a26;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Remove default arrow for custom select box feel */
+        .input-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 18px;
+        }
+
+        /* Focus & Interactive Animations */
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #4f46e5;
+            background: #1c1e2d;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.15), inset 0 0 5px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-group input:focus + label {
+            color: #6366f1;
+        }
+
+        /* --- Submit Button Animation --- */
+        .submit-container {
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #4f46e5 0%, #2563eb 50%, #06b6d4 100%);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .btn-submit:hover {
+            background-position: right center; /* Shifts gradient smoothly */
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Viewports --- */
+        @media (max-width: 850px) {
+            .portal-wrapper {
+                flex-direction: column;
+            }
+            .sidebar-banner {
+                padding: 40px 30px;
+            }
+            .sidebar-banner h1 {
+                font-size: 2rem;
+            }
+            .form-area {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Background Elements -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Main Admission Frame Container -->
+    <div class="portal-wrapper">
+        
+        <!-- LEFT SIDE: Marketing/Welcome Banner -->
+        <div class="sidebar-banner">
+            <div class="banner-content">
+                <span class="badge">Admissions 2026 Open</span>
+                <h1>Shape Your Tech Future Today</h1>
+                <p>Join world-class tech programs engineered to turn creative students into elite digital innovators.</p>
+            </div>
+            
+            <div class="banner-footer">
+                <p>✨ Verified Institutional Application Portal</p>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: The Actual Input Form -->
+        <div class="form-area">
+            <div class="form-header">
+                <h2>Application Form</h2>
+                <p>Provide your official academic registry parameters below.</p>
+            </div>
+
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    
+                    <!-- Full Name Field -->
+                    <div class="input-group">
+                        <label for="student-name">Full Name</label>
+                        <input type="text" id="student-name" required placeholder="John Doe">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="input-group">
+                        <label for="student-email">Email Address</label>
+                        <input type="email" id="student-email" required placeholder="john@example.com">
+                    </div>
+
+                    <!-- Phone Field -->
+                    <div class="input-group">
+                        <label for="student-phone">Phone Number</label>
+                        <input type="tel" id="student-phone" required placeholder="+1 (555) 000-0000">
+                    </div>
+
+                    <!-- Date of Birth Field -->
+                    <div class="input-group">
+                        <label for="student-dob">Date of Birth</label>
+                        <input type="date" id="student-dob" required>
+                    </div>
+
+                    <!-- Course Selection (Full Width Grid Element) -->
+                    <div class="input-group full-width">
+                        <label for="course-select">Select Target Program</label>
+                        <select id="course-select" required>
+                            <option value="" disabled selected>Choose a premium course...</option>
+                            <option value="cs">B.Sc. Computer Science & AI</option>
+                            <option value="wd">Advanced Full-Stack Web Architecture</option>
+                            <option value="cyber">Cyber Security & Cloud Defense Systems</option>
+                            <option value="uiux">UI/UX Creative Design Innovation</option>
+                        </select>
+                    </div>
+
+                    <!-- Academic Background Field (Full Width) -->
+                    <div class="input-group full-width">
+                        <label for="academic-level">Highest Education Level</label>
+                        <select id="academic-level" required>
+                            <option value="" disabled selected>Select your current status...</option>
+                            <option value="high-school">High School Diploma / Matric-FSc</option>
+                            <option value="bachelors">Associate / Bachelor's Degree</option>
+                            <option value="other">Other Certification</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Animated Action Submit Button -->
+                <div class="submit-container">
+                    <button type="submit" class="btn-submit">Submit My Application</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin Khalid - Activity 2</title>
+    
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            padding: 20px;
+        }
+
+        /* === MAM'S REQUIRED CSS (GRID LAYOUT) === */
+        .layout {
+            display: grid;
+            /* Yeh layout pure screen ke mutabiq grid blocks banaye ga */
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: 80px 1fr 60px;
+            min-height: 90vh;
+            gap: 15px;
+
+            /* Image mein di gayi exact grid-template-areas requirement */
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+        }
+
+        /* === CONNECTING ITEMS TO THE GRID AREAS === */
+        .main-header {
+            grid-area: header;
+            background-color: #1e293b;
+            color: #38bdf8;
+            display: flex;
+            
+            justify-content: space-between;
+            align-items:center; 
+            padding: 0 50px;
+            border-radius: 8px;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #334155;
+            color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .main-content {
+            grid-area: main;
+            background-color: #ffffff;
+            color: #333;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .main-footer {
+            grid-area: footer;
+            background-color: #0f172a;
+            color: #94a3b8;
+            display: flex;
+            
+            justify-content: center;
+            
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        /* Styling inside tags */
+        .logo { font-size: 22px; font-weight: bold; }
+        .nav-links { margin-top: 20px; }
+        .nav-links div { padding: 12px 10px; background: #475569; margin-bottom: 8px; border-radius: 4px; font-size: 15px; }
+        
+        .cards-dummy {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .dummy-card {
+            flex: 1;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout">
+        
+        <header class="main-header">
+            <div class="logo">Bin Khalid</div>
+            <div>Admin Panel</div>
+        </header>
+
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <div class="nav-links">
+                <div>Dashboard</div>
+                <div>Analytics</div>
+                <div>Settings</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1>Overview</h1>
+            <p style="color: #64748b; margin-top: 5px;">Welcome to your dynamic layout grid template.</p>
+            
+            <div class="cards-dummy">
+                <div class="dummy-card"><h3>Sales</h3><p>$15,000</p></div>
+                <div class="dummy-card"><h3>Users</h3><p>1,200</p></div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2026 Bin Khalid Dashboard. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

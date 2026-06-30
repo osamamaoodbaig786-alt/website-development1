@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid and Flexbox Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* ==========================================
+           1. GRID LAYOUT (Poore Page Ka Structure)
+        ============================================= */
+        .page-container {
+            display: grid;
+            grid-template-columns: 250px 1fr; /* Sidebar 250px ka aur baqi bachi jagah Content ki */
+            grid-template-rows: auto 1fr auto; /* Header aur Footer auto, Main content poori height lega */
+            grid-template-areas: 
+                "header header"
+                "sidebar main"
+                "footer footer";
+            min-height: 100vh;
+        }
+
+        header { grid-area: header; background-color: #2c3e50; color: white; }
+        aside { grid-area: sidebar; background-color: #34495e; color: white; padding: 20px; }
+        main { grid-area: main; padding: 30px; }
+        footer { grid-area: footer; background-color: #2c3e50; color: white; padding: 15px; text-align: center; }
+
+        /* ==========================================
+           2. FLEXBOX LAYOUT (Andar Ke Elements)
+        ============================================= */
+        
+        /* Header ke andar Flexbox */
+        header {
+            display: flex;
+            justify-content: space-between; /* Logo left pe, Navigation right pe */
+            align-items: center;            /* Vertically center align */
+            padding: 15px 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px; /* Links ke darmiyan fasla */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Sidebar Links ke liye Flexbox (Vertical column) */
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar-menu a { color: #ecf0f1; text-decoration: none; }
+
+        /* Main Content ke andar Cards ke liye Flexbox */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap; /* Agar cards zyada hon to next line mein chale jayen */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1 1 calc(33.333% - 20px); /* Ek line mein 3 cards adjust karne ke liye */
+            min-width: 250px; /* Choti screens par card is se chota nahi hoga */
+        }
+
+        /* Responsive Design (Mobile ke liye Grid tabdeel) */
+        @media (max-width: 768px) {
+            .page-container {
+                grid-template-columns: 1fr; /* Mobile par sab kuch aik hi column mein */
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+            }
+            
+            header {
+                flex-direction: column; /* Mobile par logo upar aur links neche */
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <header>
+            <div class="logo"><h2>MyWebsite</h2></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside>
+            <h3>Dashboard</h3>
+            <ul class="sidebar-menu">
+                <li><a href="#">📊 Analytics</a></li>
+                <li><a href="#">👤 Profile</a></li>
+                <li><a href="#">⚙️ Settings</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Welcome Back!</h1>
+            <p>Yeh layout Grid aur Flexbox dono ko mila kar banaya gaya hai.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>Grid ne poore page ka dhancha (structure) banaya hai.</p>
+                </div>
+                <div class="card">
+                    <h3>Card 2</h3>
+                    <p>Flexbox ne elements ko line mein align karne ka kaam kiya hai.</p>
+                </div>
+                <div class="card">
+                    <h3>Card 3</h3>
+                    <p>Yeh design responsive hai, screen choti hone par khud set ho jayega.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Grid & Flexbox Practice. Made with ❤️</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

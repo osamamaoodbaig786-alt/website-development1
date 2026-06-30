@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Corporate Job Application</title>
+    <style>
+        /* --- Import Elite Google Font --- */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            /* Sophisticated Corporate Dark Gradient */
+            background: radial-gradient(circle at top right, #0f172a 0%, #020617 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ✨ ANIMATION 1: Subtle Premium Ambient Glow --- */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: blur(60px);
+            z-index: 1;
+            animation: pulseGlow 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* --- 🏛️ Corporate Glassmorphic Card Container --- */
+        .job-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 650px;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            padding: 50px 45px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.7),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            /* Smooth Entrance Animation */
+            animation: slideUpCard 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpCard {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Header Typography --- */
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+
+        .form-header h2 {
+            color: #ffffff;
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* --- Form Fields Grid Layout --- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* --- Premium Floating Label System --- */
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input,
+        .input-wrapper select,
+        .input-wrapper textarea {
+            width: 100%;
+            padding: 16px 18px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .input-wrapper textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        /* Custom Dropdown Arrow */
+        .input-wrapper select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 16px;
+        }
+
+        /* Label Defaults */
+        .input-wrapper label {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Textarea label alignment adjust */
+        .input-wrapper.textarea-wrapper label {
+            top: 25px;
+        }
+
+        /* Focus & Valid States */
+        .input-wrapper input:focus,
+        .input-wrapper input:valid,
+        .input-wrapper select:focus,
+        .input-wrapper select:valid,
+        .input-wrapper textarea:focus,
+        .input-wrapper textarea:valid {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.03);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Floating Animation Mechanism */
+        .input-wrapper input:focus ~ label,
+        .input-wrapper input:valid ~ label,
+        .input-wrapper select:focus ~ label,
+        .input-wrapper select:valid ~ label,
+        .input-wrapper textarea:focus ~ label,
+        .input-wrapper textarea:valid ~ label {
+            top: 0;
+            font-size: 0.8rem;
+            color: #818cf8;
+            font-weight: 600;
+            background: #0b1120; /* Matches card inner depth */
+            padding: 2px 8px;
+            border-radius: 4px;
+            transform: translateY(-50%);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- 📂 Premium Custom File Upload Field --- */
+        .file-upload-wrapper {
+            position: relative;
+            background: rgba(30, 41, 59, 0.3);
+            border: 2px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.02);
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-wrapper p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .file-upload-wrapper span {
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        /* --- ✨ ANIMATION 2: Interactive Shifting Button --- */
+        .btn-container {
+            margin-top: 35px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        }
+
+        /* Responsive Breakpoint */
+        @media (max-width: 580px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Layer -->
+    <div class="ambient-glow"></div>
+
+    <!-- Main Job Application Card -->
+    <div class="job-card">
+        
+        <div class="form-header">
+            <span class="badge">We're Hiring</span>
+            <h2>Join Our Team</h2>
+            <p>Submit your professional profile and credentials</p>
+        </div>
+
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                
+                <!-- Full Name -->
+                <div class="input-wrapper">
+                    <input type="text" id="fullname" required autocomplete="off">
+                    <label for="fullname">Full Name</label>
+                </div>
+
+                <!-- Email Address -->
+                <div class="input-wrapper">
+                    <input type="email" id="email" required autocomplete="off">
+                    <label for="email">Email Address</label>
+                </div>
+
+                <!-- Position Dropdown Select -->
+                <div class="input-wrapper full-width">
+                    <select id="position" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="frontend">Frontend UI/UX Developer</option>
+                        <option value="backend">Backend Systems Architect</option>
+                        <option value="product">Product Analytics Manager</option>
+                    </select>
+                    <label for="position">Target Position</label>
+                </div>
+
+                <!-- Expected Salary -->
+                <div class="input-wrapper">
+                    <input type="text" id="salary" required autocomplete="off">
+                    <label for="salary">Expected Salary ($)</label>
+                </div>
+
+                <!-- Experience Level -->
+                <div class="input-wrapper">
+                    <select id="experience" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="junior">Junior (1-2 Years)</option>
+                        <option value="mid">Mid-Level (3-5 Years)</option>
+                        <option value="senior">Senior (5+ Years)</option>
+                    </select>
+                    <label for="experience">Experience Level</label>
+                </div>
+
+                <!-- Cover Letter / Short Bio -->
+                <div class="input-wrapper full-width textarea-wrapper">
+                    <textarea id="bio" required></textarea>
+                    <label for="bio">Why do you want to join us?</label>
+                </div>
+
+                <!-- Custom Elegant Resume Upload Box -->
+                <div class="file-upload-wrapper full-width">
+                    <p>Drag & drop your CV or <span>Browse File</span></p>
+                    <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+
+            </div>
+
+            <!-- Submit Button -->
+            <div class="btn-container">
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Skill Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Muhammad Osama</div> <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li> <li><a href="#skills">Skills</a></li> <li><a href="#projects">Projects</a></li> <li><a href="#contact">Contact</a></li> </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Muhammad Osama</h1> <p>I am a passionate Web Developer and Data Analyst. I focus on writing clean code, building complex logic, and creating highly responsive user experiences.</p> <a href="#projects" class="btn hero-btn">View My Work</a> </div>
+            <div class="hero-image">
+                <img src="card\hero.jpg" alt="Muhammad Osama Profile Pic">
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2>My Skills</h2>
+            <div class="skills-grid"> <div class="skill-card"> <h3>HTML</h3> <p>Structuring the web with proper semantic tags and SEO-friendly structures.</p>
+                </div>
+                <div class="skill-card"> <h3>CSS</h3> <p>Styling fluid web layouts with absolute modern design aesthetics.</p>
+                </div>
+                <div class="skill-card"> <h3>Flexbox</h3> <p>Aligning items smoothly and designing responsive navigation modules.</p>
+                </div>
+                <div class="skill-card"> <h3>CSS Grid</h3> <p>Crafting powerful two-dimensional grid systems for complex user interfaces.</p>
+                </div>
+                <div class="skill-card"> <h3>Responsive Design</h3> <p>Optimizing web pages to work flawlessly on laptop, mobile, and tablet screens.</p>
+                </div>
+                <div class="skill-card"> <h3>JavaScript Basics</h3> <p>Adding interactivity, tracking dynamic states, and handling user logic.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2>My Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="card-meta">
+                        <h3>Bin Khalid Dashboard</h3> <p>A full-scale analytical dashboard designed to track business data visualizations and display responsive metrics seamlessly.</p> <p class="tech-stack"><strong>Technologies used:</strong> HTML, CSS Grid, Flexbox, Chart.js</p> </div>
+                    <a href="#" class="btn card-btn">View Project</a> </div>
+                <div class="project-card">
+                    <div class="card-meta">
+                        <h3>Interactive Quiz App</h3> <p>A highly interactive quiz application that dynamically processes a pool of 30 engaging questions with clean layouts.</p> <p class="tech-stack"><strong>Technologies used:</strong> HTML, CSS, JavaScript Basics</p> </div>
+                    <a href="#" class="btn card-btn">View Project</a> </div>
+                <div class="project-card">
+                    <div class="card-meta">
+                        <h3>Premium Portfolio Page</h3> <p>A responsive personal showcase crafted to highlight web development credentials, technical skills, and internship readiness.</p> <p class="tech-stack"><strong>Technologies used:</strong> HTML, CSS Grid, Media Queries</p> </div>
+                    <a href="#" class="btn card-btn">View Project</a> </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:osama.baig@example.com">osama.baig@example.com</a></p> <p><strong>Phone Number:</strong> +92 300 1234567</p> <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/osamabaig</a></p> </div>
+            <a href="mailto:osama.baig@example.com" class="btn contact-btn">Contact Button</a> </section>
+    </main>
+
+</body>
+</html>

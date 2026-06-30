@@ -1,0 +1,81 @@
+<div class="aurora-card-wrapper">
+    <!-- Cosmic Glowing Background Blobs inside the card -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="admission-glass-card">
+        <!-- Form Header -->
+        <div class="form-header">
+            <div class="brand-badge">Premium Learning</div>
+            <h1 class="main-title">Aura Academy</h1>
+            <p class="subtitle">Secure your slot in the upcoming advanced cohort.</p>
+        </div>
+
+        <form id="premiumAdmissionForm" autocomplete="off">
+            
+            <!-- Input Row 1: Floating Glass Inputs -->
+            <div class="input-row">
+                <div class="glass-input-group">
+                    <input type="text" required placeholder=" ">
+                    <label>Full Name</label>
+                    <span class="focus-bar"></span>
+                </div>
+                <div class="glass-input-group">
+                    <input type="email" required placeholder=" ">
+                    <label>Email Address</label>
+                    <span class="focus-bar"></span>
+                </div>
+            </div>
+
+            <!-- Program Selection Matrix (Chips Visual Style) -->
+            <div class="form-segment">
+                <label class="segment-label">Choose Your Specialization</label>
+                <div class="chips-grid">
+                    <label class="chip-container">
+                        <input type="radio" name="program" value="python-ai" required>
+                        <div class="chip-box">
+                            <span class="chip-icon">🐍</span>
+                            <div class="chip-text">
+                                <strong>Python & AI</strong>
+                                <small>Data Science Track</small>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label class="chip-container">
+                        <input type="radio" name="program" value="web-dev">
+                        <div class="chip-box">
+                            <span class="chip-icon">⚡</span>
+                            <div class="chip-text">
+                                <strong>Full-Stack Dev</strong>
+                                <small>Modern UI Systems</small>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Schedule & Timing (Sleek Inline Selector) -->
+            <div class="form-segment">
+                <label class="segment-label">Preferred Learning Window</label>
+                <div class="timeline-selector">
+                    <label class="time-node">
+                        <input type="radio" name="schedule" value="morning" required>
+                        <div class="node-content">Morning (9am - 12pm)</div>
+                    </label>
+                    <label class="time-node">
+                        <input type="radio" name="schedule" value="evening">
+                        <div class="node-content">Evening (6pm - 9pm)</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Ultimate Luxury Submit Button -->
+            <button type="submit" class="aurora-submit-btn">
+                <span>Request Enrollment Access</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+
+        </form>
+    </div>
+</div>

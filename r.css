@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorgeous Futuristic Form</title>
+    <style>
+        /* --- Reset & Base Layout --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+        }
+
+        body {
+            /* Deep Space Violet-Black Background */
+            background: radial-gradient(circle at center, #0f1026 0%, #05050d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- ✨ ANIMATION 1: Glowing Nebula Background Orbs --- */
+        .nebula {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(121, 40, 202, 0.25) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            filter: blur(50px);
+            animation: floatGlow 8s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        .nebula-2 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0, 223, 216, 0.2) 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            filter: blur(50px);
+            animation: floatGlow 10s infinite alternate-reverse ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.15); }
+        }
+
+        /* --- 🏛️ ANIMATION 2: Dynamic Rotating Border Card --- */
+        .card-frame {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            padding: 2px; /* Border thickness */
+            background: linear-gradient(0deg, transparent, #00dfd8, #7928ca, transparent);
+            border-radius: 24px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(121, 40, 202, 0.15);
+        }
+
+        /* Laser Border Rotation effect */
+        .card-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, #00dfd8, #7928ca, transparent 60%);
+            animation: rotateBorder 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotateBorder {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Real Content Box inside the animated frame */
+        .form-container {
+            position: relative;
+            background: #090a14;
+            border-radius: 22px;
+            padding: 45px 35px;
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        /* --- Form Header Typography --- */
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            /* Shimmering Text Gradient */
+            background: linear-gradient(135deg, #ffffff 40%, #00dfd8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-header p {
+            color: #71718a;
+            font-size: 0.9rem;
+        }
+
+        /* --- 💫 ANIMATION 3: Premium Floating Labels --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom Dropdown arrow */
+        .input-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371718a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 16px;
+        }
+
+        /* Label styling and animation physics */
+        .input-group label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #52526b;
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            padding: 0 4px;
+        }
+
+        /* Jab input field par click ho ya usme text ho */
+        .input-group input:focus,
+        .input-group input:valid,
+        .input-group select:focus,
+        .input-group select:valid {
+            border-color: #00dfd8;
+            background: rgba(0, 223, 216, 0.01);
+            box-shadow: 0 0 20px rgba(0, 223, 216, 0.15);
+        }
+
+        /* Label sliding coordinates */
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label,
+        .input-group select:focus ~ label,
+        .input-group select:valid ~ label {
+            top: 0;
+            font-size: 0.8rem;
+            color: #00dfd8;
+            font-weight: 600;
+            background: #090a14; /* Form container background matching color */
+            transform: translateY(-50%);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- 🚀 ANIMATION 4: Liquid Neon Button --- */
+        .btn-container {
+            margin-top: 35px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #7928ca 0%, #00dfd8 100%);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 223, 216, 0.25);
+            transition: all 0.4s ease;
+        }
+
+        /* Gradient shifting logic on hover */
+        .submit-btn:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(121, 40, 202, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Space Nebula Layers -->
+    <div class="nebula"></div>
+    <div class="nebula-2"></div>
+
+    <!-- Animated Outer Neon Frame -->
+    <div class="card-frame">
+        
+        <!-- Main Form Wrapper -->
+        <div class="form-container">
+            
+            <div class="form-header">
+                <h2>Registration Portal</h2>
+                <p>Fill in your credentials to join our elite server</p>
+            </div>
+
+            <form action="#" method="POST">
+                
+                <!-- Input Box 1: Full Name -->
+                <div class="input-group">
+                    <input type="text" id="fullname" required autocomplete="off">
+                    <label for="fullname">Full Name</label>
+                </div>
+
+                <!-- Input Box 2: Email Address -->
+                <div class="input-group">
+                    <input type="email" id="email" required autocomplete="off">
+                    <label for="email">Email Address</label>
+                </div>
+
+                <!-- Input Box 3: Select Options -->
+                <div class="input-group">
+                    <select id="course" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="cyber">Cyber Security & Ethical Hacking</option>
+                        <option value="ai">Artificial Intelligence & ML</option>
+                        <option value="web">Full-Stack Web Engineering</option>
+                    </select>
+                    <label for="course">Select Your Course</label>
+                </div>
+
+                <!-- Glow Action Submit Button -->
+                <div class="btn-container">
+                    <button type="submit" class="submit-btn">Submit Information</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

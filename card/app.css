@@ -1,0 +1,202 @@
+/* Base Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* ==========================================
+   1. MAIN GRID LAYOUT
+   ========================================== */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar main";
+    height: 100vh;
+}
+
+/* Assigning Grid Areas */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #1e293b;
+    color: #fff;
+}
+
+.main-header {
+    grid-area: header;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.main-content {
+    grid-area: main;
+    padding: 24px;
+    overflow-y: auto;
+    
+    /* Content Inner Grid: Automatically fits cards */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Making Chart and Activity layout look premium */
+.chart-card {
+    grid-column: span 2;
+}
+
+/* ==========================================
+   2. FLEXBOX LAYOUTS (Inside Components)
+   ========================================== */
+
+/* Sidebar Flexbox */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+    flex-grow: 1;
+}
+
+.nav-menu a {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    background-color: #334155;
+    color: #fff;
+}
+
+/* Header Flexbox */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.user-role {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Card Styling & Internal Flexbox */
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #1e293b;
+}
+
+.trend {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.positive { color: #10b981; }
+.negative { color: #ef4444; }
+
+/* Dummy Chart Flexbox */
+.dummy-chart {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 5px;
+}
+
+.bar {
+    width: 14%;
+    background-color: #4f46e5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.bar:hover {
+    background-color: #6366f1;
+}
+
+/* Activity Feed Flexbox */
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.blue { background-color: #3b82f6; }
+.green { background-color: #10b981; }
+.orange { background-color: #f59e0b; }

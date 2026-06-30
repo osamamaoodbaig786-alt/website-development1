@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Quiz App - 30 Questions</title>
+    <style>
+        /* CSS Variables taake dynamically background rang badal sake */
+        :root {
+            --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Dynamic Dancing Background Layer */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: var(--bg-gradient);
+            background-size: 300% 300%;
+            z-index: -1;
+            transition: background 1.2s ease-in-out;
+            animation: danceMove 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes danceMove {
+            0% {
+                background-position: 0% 50%;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                background-position: 100% 50%;
+                transform: scale(1.05) rotate(2deg);
+            }
+            100% {
+                background-position: 50% 100%;
+                transform: scale(0.96) rotate(-2deg);
+            }
+        }
+
+        /* Gorgeous Pink Glassmorphic Quiz Card */
+        .quiz-container {
+            background: rgba(253, 242, 248, 0.96) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(231, 60, 126, 0.25);
+            border: 2px solid rgba(244, 114, 182, 0.4);
+            width: 100%;
+            max-width: 550px;
+            padding: 35px;
+            min-height: 380px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .quiz-header {
+            margin-bottom: 24px;
+        }
+
+        .progress-text {
+            font-size: 0.95rem;
+            color: #db2777;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #4c0519;
+            margin-bottom: 20px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Option Buttons styled with pink aesthetics */
+        .option-btn {
+            background-color: #fdf2f8;
+            border: 2px solid #fbcfe8;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #9d174d;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .option-btn:hover {
+            background-color: #ffffff;
+            border-color: #f472b6;
+            color: #e11d48;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(244, 114, 182, 0.25);
+        }
+
+        /* Selected Option State */
+        .option-btn.selected {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%) !important;
+            border-color: #ec4899 !important;
+            color: white !important;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Glowing Next Button */
+        .next-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 28px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 8px 22px rgba(16, 185, 129, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .score-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-container h3 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+        }
+
+        .restart-btn:hover {
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="quiz"></div>
+
+    <script>
+        window.onload = function() {
+            const quizData = [
+                { question: "CSS Grid aur Flexbox ma se 2-Dimensional layout kaunsa hai?", a: "Flexbox", b: "CSS Grid", c: "Dono hain", d: "Koi bhi nahi", correct: "b" },
+                { question: "HTML ka poora naam (Full Form) kya hai?", a: "HighText Machine Language", b: "HyperText Markup Language", c: "HyperText Market Language", d: "Ziyada Text Wali Language", correct: "b" },
+                { question: "JavaScript ma variables banane ke liye kaunsa keyword use hota hai?", a: "var", b: "let", c: "const", d: "Yeh sab use hote hain", correct: "d" },
+                { question: "Internet par websites ko unique address dene wale system ko kya kehte hain?", a: "HTTP", b: "URL", c: "IP Address", d: "DNS", correct: "b" },
+                { question: "CSS ka full form kya hai?", a: "Creative Style Sheets", b: "Cascading Style Sheets", c: "Computer Style Sheets", d: "Colorful Style Sheets", correct: "b" },
+                { question: "Kisi HTML page ka background color change karne ke liye sahi property konsi hai?", a: "color", b: "bg-color", c: "background-color", d: "page-color", correct: "c" },
+                { question: "JavaScript ma array ka pehla element kis index se shuru hota hai?", a: "1", b: "0", c: "-1", d: "Aapki marzi par hota hai", correct: "b" },
+                { question: "Inme se kaunsa database 'NoSQL' database ki misaal hai?", a: "MySQL", b: "PostgreSQL", c: "MongoDB", d: "Oracle", correct: "c" },
+                { question: "HTML ma sabsay badi heading ke liye kaunsa tag use hota hai?", a: "<h6>", b: "<heading>", c: "<h1>", d: "<head>", correct: "c" },
+                { question: "JavaScript code ko execute karne ke liye kaunsa tool browser ke andar hota hai?", a: "JS Compiler", b: "JS Engine", c: "JS Linker", d: "JS Database", correct: "b" },
+                { question: "CSS ma elements ko ek line ma laane ke liye display ki kya value use hoti hai?", a: "block", b: "inline-block", c: "flex", d: "B aur C dono", correct: "d" },
+                { question: "Git kya hai?", a: "Programming Language", b: "Database Management Tool", c: "Version Control System", d: "Hosting Server", correct: "c" },
+                { question: "CSS box model ma sabsay andar ka hissa kya hota hai?", a: "Padding", b: "Margin", c: "Border", d: "Content", correct: "d" },
+                { question: "Kaunsa HTML attribute kisi image ka path define karne ke liye use hota hai?", a: "href", b: "src", c: "link", d: "path", correct: "b" },
+                { question: "JavaScript ma equal checking ke liye strict comparison operator kaunsa hai?", a: "=", b: "==", c: "===", d: "!=", correct: "c" },
+                { question: "Inme se konsi programming language machine code ma direct compile hoti hai?", a: "Python", b: "JavaScript", c: "C++", d: "PHP", correct: "c" },
+                { question: "HTML tag <br> kis maqsad ke liye use hota hai?", a: "Bold karne ke liye", b: "Line Break karne ke liye", c: "Border lagane ke liye", d: "Browser band karne ke liye", correct: "b" },
+                { question: "CSS ma text ko capital letters ma badalne ke liye konsi property use hoti hai?", a: "text-transform: uppercase", b: "text-style: capital", d: "text-convert: upper", correct: "a" },
+                { question: "Web server se data fetch karne ke liye JavaScript ka modern tarika konsa hai?", a: "XML", b: "Fetch API / Axios", c: "Prompt", d: "Form Submit", correct: "b" },
+                { question: "Inme se kaunsa CSS framework hai?", a: "Laravel", b: "React", c: "Tailwind CSS", d: "Django", correct: "c" },
+                { question: "JavaScript ma popup box ma message dikhane ke liye kya use hota hai?", a: "console.log()", b: "alert()", c: "document.write()", d: "print()", correct: "b" },
+                { question: "HTML form ma input data ko hidden rakh kar server bhejne ke liye kaunsa method best hai?", a: "GET", b: "POST", c: "SEND", d: "FETCH", correct: "b" },
+                { question: "ReactJS kya hai?", a: "Backend Framework", b: "Programming Language", c: "Frontend UI Library", d: "Database Engine", correct: "c" },
+                { question: "CSS padding aur margin ma kya farq hai?", a: "Dono same hain", b: "Padding andar ki space hai, Margin bahar ki", c: "Margin andar ki space hai, Padding bahar ki", d: "Padding border badhati hai", correct: "b" },
+                { question: "Webpage par hyper-link lagane ke liye sahi HTML tag kaunsa hai?", a: "<a>", b: "<link>", c: "<href>", d: "<url>", correct: "a" },
+                { question: "Computer ka dimaag (Brain of Computer) kise kaha jata hai?", a: "RAM", b: "Hard Disk", c: "CPU", d: "Monitor", correct: "c" },
+                { question: "API ka full form kya hai?", a: "Application Programming Interface", b: "Advanced Programming Internet", c: "Automated Protocol Integration", d: "Apple Program Index", correct: "a" },
+                { question: "CSS ma kisi element ko poori screen se gayab karne ke liye sahi code kya hai?", a: "visibility: hidden", b: "display: none", c: "opacity: 0", d: "Yeh sabhi tarike use hote hain", correct: "d" },
+                { question: "JavaScript kis type ki language hai?", a: "Strictly Typed", b: "Dynamically/Loosely Typed", c: "Sirf Static Typed", d: "Khatarnak Typed", correct: "b" },
+                { question: "URL ma 'https://' ma 's' ka kya matlab hota hai?", a: "Server", b: "Secure", c: "Speed", d: "System", correct: "b" }
+            ];
+
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let selectedAnswer = null;
+
+            // Dancing backgrounds ki color variety
+            const dynamicGradients = [
+                "linear-gradient(-45deg, #ec4899, #8b5cf6, #3b82f6, #10b981)",
+                "linear-gradient(45deg, #ff007f, #7f00ff, #00ffff, #ff00ff)",
+                "linear-gradient(135deg, #f43f5e, #fb923c, #eab308, #ec4899)",
+                "linear-gradient(-135deg, #ed4264, #ffedbc, #2b5876, #4e4376)",
+                "linear-gradient(90deg, #ff7e5f, #feb47b, #86e3ce, #d6e6f2)",
+                "linear-gradient(225deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)"
+            ];
+
+            const quizContainer = document.getElementById('quiz');
+
+            window.selectOption = function(button, answer) {
+                resetOptions();
+                button.classList.add('selected');
+                selectedAnswer = answer;
+            }
+
+            function resetOptions() {
+                const buttons = document.querySelectorAll('.option-btn');
+                buttons.forEach(function(btn) {
+                    btn.classList.remove('selected');
+                });
+            }
+
+            function changeDanceStyle() {
+                // Background gradient ko bina glitch ke update karne ka premium method
+                const randomIndex = Math.floor(Math.random() * dynamicGradients.length);
+                document.documentElement.style.setProperty('--bg-gradient', dynamicGradients[randomIndex]);
+
+                // Card dynamic pop effect (Jaise click par beat jump hui ho)
+                quizContainer.style.transform = "scale(0.96) rotate(-1deg)";
+                setTimeout(() => {
+                    quizContainer.style.transform = "scale(1) rotate(0deg)";
+                }, 150);
+            }
+
+            window.loadNextQuestion = function() {
+                if (selectedAnswer === null) {
+                    alert("Yar, pehle koi option toh select karo!");
+                    return;
+                }
+
+                if (selectedAnswer === quizData[currentQuestionIndex].correct) {
+                    score++;
+                }
+
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < quizData.length) {
+                    changeDanceStyle(); // Dance styles and background colors triggered
+                    loadQuestion();     // Naya question render hoga bina break kiye
+                } else {
+                    showResult();
+                }
+            }
+
+            window.startQuiz = function() {
+                currentQuestionIndex = 0;
+                score = 0;
+                selectedAnswer = null;
+                loadQuestion();
+            }
+
+            // Yeh main function hai jo har click par HTML ko safely rebuild karega bina crash hue
+            function loadQuestion() {
+                selectedAnswer = null;
+                
+                if (currentQuestionIndex < quizData.length) {
+                    const currentQuizData = quizData[currentQuestionIndex];
+                    
+                    quizContainer.innerHTML = `
+                        <div id="quiz-content">
+                            <div class="quiz-header">
+                                <div class="progress-text">Question ${currentQuestionIndex + 1} of ${quizData.length}</div>
+                                <h2>${currentQuizData.question}</h2>
+                            </div>
+                            <div class="options-container">
+                                <button class="option-btn" onclick="selectOption(this, 'a')">${currentQuizData.a}</button>
+                                <button class="option-btn" onclick="selectOption(this, 'b')">${currentQuizData.b}</button>
+                                <button class="option-btn" onclick="selectOption(this, 'c')">${currentQuizData.c}</button>
+                                <button class="option-btn" onclick="selectOption(this, 'd')">${currentQuizData.d}</button>
+                            </div>
+                            <button class="next-btn" onclick="loadNextQuestion()">Next Question</button>
+                        </div>
+                    `;
+                }
+            }
+
+            function showResult() {
+                let remarks = "Zabardast khele!";
+                if(score === quizData.length) remarks = "king badshah 👑";
+                else if(score > 20) remarks = "sultan! 🔥";
+                else if(score > 10) remarks = "hero. 👍";
+
+                quizContainer.innerHTML = `
+                    <div class="score-container">
+                        <h3>Quiz Complete! 🎉</h3>
+                        <p style="font-size: 1.2rem; margin-top: 10px; margin-bottom: 5px; color: #9d174d;">${remarks}</p>
+                        <p style="font-size: 1.4rem; margin-bottom: 25px; color: #4c0519;">Aapka Final Score: <strong>${score} / ${quizData.length}</strong></p>
+                        <button class="restart-btn" onclick="startQuiz()">Dubara Khelo</button>
+                    </div>
+                `;
+            }
+
+            // Pehli baar quiz chalane ke liye initial execution
+            startQuiz();
+        };
+    </script>
+</body>
+</html>
